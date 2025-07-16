@@ -1,0 +1,75 @@
+﻿@(Html.Kendo().Grid<Vehiculo>()
+    .Name("Grid")
+    .Columns(columns =>
+    {
+        columns.Bound(v => v.Id).Title("ID").Width(50);
+        columns.Bound(v => v.Marca);
+        columns.Bound(v => v.Modelo);
+        columns.Bound(v => v.Anio);
+        columns.Command(command =>
+        {
+            command.Edit();
+            command.Destroy();
+        }).Title("Acciones").Width(200);
+    })
+    .ToolBar(toolbar => toolbar.Create())
+    .Editable(editable => editable.Mode(GridEditMode.PopUp))
+    .Pageable()
+    .Sortable()
+    .Scrollable()
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .Model(model => model.Id(v => v.Id))
+        .Read(read => read.Action("Read", "Vehiculos"))
+        .Create(create => create.Action("Create", "Vehiculos"))
+        .Update(update => update.Action("Update", "Vehiculos"))
+        .Destroy(destroy => destroy.Action("Delete", "Vehiculos"))
+    )
+)
+
+@{
+    ViewData["Title"] = "Bienvenido";
+}
+
+<div class="container my-5 py-5 text-center">
+    <div class="animate__animated animate__fadeIn">
+        <h1 class="display-3 fw-bold mb-4">Bienvenido <span id="typed" class="text-primary"></span></h1>
+        <p class="lead mb-4">Sistema integrado para gestión de vehículos y datos Pokémon</p>
+        <a asp-controller="Vehiculos" asp-action="Index" class="btn btn-primary btn-lg px-4 pulse-animation">
+            <i class="fas fa-rocket me-2"></i>Comenzar
+        </a>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script>
+        new Typed('#typed', {
+            strings: ["GrupoVimar", "Operador", "Administrador", "Colaborador", "Amigo"],
+            typeSpeed: 150,
+            backSpeed: 150,
+            loop: true
+        });
+    </script>
+
+    <style>
+        .pulse-animation {
+            animation: pulse 9s infinite;
+        }
+
+        @@keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+}
+

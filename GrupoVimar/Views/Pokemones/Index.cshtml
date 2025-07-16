@@ -1,0 +1,23 @@
+﻿@using GrupoVimar.ExternalModels
+@model List<PokemonItem>
+
+@{
+    ViewData["Title"] = "Pokemones";
+}
+
+<h2>Lista de Pokemones</h2>
+
+<div class="row">
+    @foreach (var pokemon in Model)
+    {
+        <div class="col-md-3 mb-4">
+            <div class="card text-center shadow">
+                <img src="@pokemon.ImageUrl" class="card-img-top mx-auto" style="width:100px; height:100px;" alt="@pokemon.Name" />
+                <div class="card-body">
+                    <h5 class="card-title text-capitalize">@pokemon.Name</h5>
+                    <a href="@pokemon.Url" class="btn btn-sm btn-outline-primary" target="_blank">Ver en API</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
