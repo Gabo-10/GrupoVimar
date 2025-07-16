@@ -28,4 +28,8 @@
     <PackageReference Include="Telerik.UI.for.AspNet.Core" Version="2025.2.702" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Screenshots\" />
+  </ItemGroup>
+
 </Project>

@@ -14,15 +14,14 @@ namespace GrupoVimar.Services
             _httpClient = httpClient;
         }
 
-        public async Task<List<PokemonItem>> GetPokemonsAsync(int limit = 10)
+        public async Task<List<PokemonItem>> GetPokemonsAsync(int limit = 12)
         {
             var response = await _httpClient.GetAsync($"https://pokeapi.co/api/v2/pokemon?limit={limit}");
 
             if (response.IsSuccessStatusCode)
             {
                 var json = await response.Content.ReadAsStringAsync();
-                Console.WriteLine("📦 JSON recibido de la API:");
-                Console.WriteLine(json); // ← Asegúrate de que se imprima algo aquí
+                
 
                 var result = JsonSerializer.Deserialize<PokemonResponse>(json, new JsonSerializerOptions
                 {

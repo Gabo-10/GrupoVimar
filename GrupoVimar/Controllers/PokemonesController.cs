@@ -15,11 +15,9 @@ namespace GrupoVimar.Controllers
 
         public async Task<IActionResult> Index()
         {
-            Console.WriteLine("🔍 Entrando a PokemonesController.Index");
 
             var pokemones = await _pokeService.GetPokemonsAsync();
 
-            Console.WriteLine($"🐱‍👤 Número de pokemones recibidos: {pokemones.Count}");
 
             return View(pokemones);
         }
